@@ -130,6 +130,7 @@ __pypackages__/
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
+docs/recursos/*
 
 # Redis
 *.rdb
@@ -216,3 +217,29 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Proyecto B5-T1
+.venv/
+data/raw/
+data/processed/*.npz
+!data/processed/precios_universo.csv
+models/*.npz
+models/*.keras
+# Las figuras se versionan: el enunciado exige que el repositorio contenga los
+# graficos de analisis de resultados.
+
+
+# Documentos de coordinacion interna del equipo: no forman parte del entregable
+docs/GUIA_EQUIPO.md
+docs/PROMPT_AGENTE.md
+
+# Generadores de los notebooks: herramienta interna de construccion, no forma
+# parte del entregable. Los notebooks son la fuente publicada.
+scripts/_nbtools.py
+scripts/gen_nb*.py
+scripts/gen_esqueletos.py
+
+# Material del taller proporcionado por el profesorado
+Taller_GANs.ipynb
+Taller_Gaussian_solution.ipynb
+Taller_con_Datos_SP500_promedio.ipynb

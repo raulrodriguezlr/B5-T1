@@ -1,0 +1,15 @@
+# Entorno del taller B5-T1.
+# Python 3.14 no dispone de TensorFlow, por lo que Keras 3 se ejecuta sobre el
+# backend de PyTorch. La API de capas y modelos es la misma que la del material
+# del taller.
+numpy>=2.0
+pandas>=2.2
+matplotlib>=3.8
+scikit-learn>=1.5
+scipy>=1.13
+seaborn>=0.13
+yfinance>=0.2
+torch>=2.4
+keras>=3.5
+jupyter
+ipykernel
