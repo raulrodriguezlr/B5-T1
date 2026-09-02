@@ -45,9 +45,11 @@ def cargar_precios(ruta=None, n_tickers=None):
 
     n_tickers = n_tickers or config.N_TICKERS
     if precios.shape[1] > n_tickers:
-        # Ante un universo mayor que el solicitado se conservan los activos de
-        # mayor recorrido temporal efectivo, manteniendo el orden alfabetico
-        # para que la seleccion sea reproducible.
+        # El `dropna` anterior ya deja unicamente activos con historia completa,
+        # de modo que todos cubren el mismo periodo y no hay ningun criterio de
+        # recorrido temporal que los distinga. El recorte se queda por tanto con
+        # los primeros del fichero, que estan en orden alfabetico: un desempate
+        # arbitrario pero estable, y por ello reproducible.
         precios = precios.iloc[:, :n_tickers]
 
     return precios
@@ -230,7 +232,7 @@ def cargar_dataset(ruta=None):
     if not os.path.exists(ruta):
         raise FileNotFoundError(
             f"No se encuentra {ruta}. Ejecutar antes el notebook "
-            "'00_datos_y_preparacion.ipynb'."
+            "'00_datos_y_dataset.ipynb'."
         )
 
     with np.load(ruta, allow_pickle=True) as f:
