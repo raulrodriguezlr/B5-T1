@@ -1,7 +1,7 @@
 # Generación de datos financieros sintéticos
 
 **Taller B5-T1 · MIAX**
-Raúl Rodríguez, Pietro y Alonso
+Raúl, Pietro y Alonso
 
 Este repositorio estudia si los datos sintéticos generados por modelos
 neuronales mejoran un clasificador que trata de anticipar caídas severas del
