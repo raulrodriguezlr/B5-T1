@@ -243,3 +243,5 @@ scripts/gen_esqueletos.py
 Taller_GANs.ipynb
 Taller_Gaussian_solution.ipynb
 Taller_con_Datos_SP500_promedio.ipynb
+
+professor_notebooks/*
