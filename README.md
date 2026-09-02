@@ -31,6 +31,31 @@ distribución de drawdown calculada **solo sobre el bloque de entrenamiento**.
 Calibrarlo sobre la muestra completa habría filtrado información del test hacia
 la propia definición del problema.
 
+### De dónde parte este problema, y en qué se diferencia
+
+**El problema financiero de este trabajo es anticipar un evento raro: si la
+cartera va a sufrir una caída severa en los 30 días siguientes.** No es
+predecir cuánto va a subir o bajar el mercado en promedio; es detectar el
+episodio de estrés antes de que ocurra.
+
+El punto de partida es el ejercicio de la sesión 1: mismo universo del S&P 500,
+misma fuente de tickers, misma ventana de 60 días de entrada y el mismo tipo de
+red convolucional. Sobre esa base se cambian dos cosas, y no son cosméticas:
+
+| | Ejercicio de la sesión 1 | Este trabajo |
+|---|---|---|
+| Qué predice | la rentabilidad **media** de los 30 días siguientes | si habrá una caída **severa** en esos 30 días |
+| Tipo de problema | regresión, con `train_test_split` aleatorio | clasificación de un evento raro (~10 % positivos) |
+| Partición | aleatoria sobre ventanas solapadas | cronológica, con embargo de 90 sesiones |
+| Escasez de datos | ninguna: cada día tiene una etiqueta continua válida | real: 1.137 ventanas positivas son solo 51 episodios |
+
+La rentabilidad media no escasea nunca: todos los días tienen una etiqueta
+válida y no hay clase minoritaria. Reformular el problema como la detección de
+un evento raro es lo que **crea** la escasez de datos que el resto del taller
+pide analizar — y es exactamente lo que este problema tiene y el de la sesión 1
+no tiene. Por eso el punto de partida es el mismo taller, pero el problema
+financiero, y la razón por la que necesita datos sintéticos, es otro.
+
 ### Por qué este problema necesita datos sintéticos
 
 El conjunto de entrenamiento contiene 1.137 ventanas positivas, cifra que en
