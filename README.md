@@ -284,6 +284,47 @@ produce las muestras más alejadas del conjunto de entrenamiento y tampoco aport
 nada: esa distancia mide alejamiento de la distribución real, no exploración de
 regiones plausibles.
 
+### Cuánta información sobre la etiqueta conserva cada generador
+
+Las medidas anteriores dicen si las muestras *se parecen* a las reales y si
+*ayudan*. Queda la pregunta que explica ambas: cuánta información sobre la
+etiqueta contienen. Se estima la información mutua entre seis descriptores
+agregados de la ventana y la etiqueta, con el estimador de vecinos próximos,
+submuestreando todos los conjuntos al mismo tamaño y promediando cinco
+repeticiones.
+
+| Conjunto | Información (bits) | Respecto a los reales |
+|---|---|---|
+| **Reales** | **0,646 ± 0,002** | 100 % |
+| Difusión | 0,314 ± 0,035 | 49 % |
+| Ruido gaussiano | 0,309 ± 0,030 | 48 % |
+| cGAN | 0,262 ± 0,025 | 41 % |
+| CVAE | 0,050 ± 0,011 | 8 % |
+
+El desglose por descriptor dice más que el total. Ordenados por lo informativos
+que son en los datos reales, y con lo que conservan los generadores en promedio:
+
+| Descriptor | Real | Conservado |
+|---|---|---|
+| Peor sesión de la ventana | 0,261 | **11 %** |
+| Drawdown acumulado en la ventana | 0,191 | **29 %** |
+| Dispersión entre activos | 0,059 | 80 % |
+| Volatilidad | 0,051 | 67 % |
+| Rentabilidad absoluta media | 0,047 | 72 % |
+| Retorno acumulado | 0,037 | 94 % |
+
+La relación es casi perfectamente inversa: **cuanto más informativo es un
+descriptor, menos lo conservan los generadores**. Los dos que deciden la
+etiqueta —la peor sesión y el drawdown ya acumulado, ambos medidas de
+comportamiento extremo dentro de la ventana— se pierden casi por completo,
+mientras que los que menos informan se reproducen bien.
+
+Esto cierra el argumento. El resultado de que ningún generador mejora al
+clasificador deja de ser una observación sin causa: los conjuntos sintéticos no
+contienen la información que haría falta para aprender.
+
+### Realismo, utilidad y coste
+
 El generador simple del notebook 03 es el que menos daño hace en proporciones
 pequeñas, por la razón trivial de que sus muestras son datos reales perturbados.
 Ordenados por coste computacional —segundos, 4, 8 y 20 minutos— el orden resulta
