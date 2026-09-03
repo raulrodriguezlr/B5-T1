@@ -235,9 +235,6 @@ docs/PROMPT_AGENTE.md
 
 # Generadores de los notebooks: herramienta interna de construccion, no forma
 # parte del entregable. Los notebooks son la fuente publicada.
-scripts/_nbtools.py
-scripts/gen_nb*.py
-scripts/gen_esqueletos.py
 
 # Material del taller proporcionado por el profesorado
 Taller_GANs.ipynb
